@@ -2,12 +2,12 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    @font-face {
-      font-family: 'MinionPro';
-      src: url('MinionPro-Regular.otf') format('opentype');
-      font-weight: normal;
-      font-style: normal;
-    }
+ @font-face {
+  font-family: 'MinionPro';
+  src: url('MinionPro-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
     body {
       margin: 0;
