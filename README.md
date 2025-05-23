@@ -1,42 +1,59 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <title>So klingt Lisa Felden</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      background-color: #f5f5f5;
-      font-family: serif;
+      background-color: #fff;
+      font-family: system-ui, sans-serif;
     }
 
-    h1 {
-      margin-bottom: 40px;
-      font-size: 18px;
-      color: #333;
-      text-align: center;
+    .play-button {
+      background-color: #ff3c00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 16px 24px;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.2s;
+    }
+
+    .play-button:hover {
+      background-color: #e03200;
+    }
+
+    .play-button svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
     }
 
     audio {
-      width: auto;
-      height: 80px;
-      background: none;
-      outline: none;
-    }
-
-    audio::-webkit-media-controls-panel {
-      transform: scale(2.5);
-      transform-origin: center;
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>So klingt Julia Rammler</h1>
-  <audio controls>
-    <source src="JuliaRammler.mp3" type="audio/mpeg">
+
+  <button class="play-button" onclick="document.getElementById('audio').play()">
+    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    So klingt Lisa Felden
+  </button>
+
+  <audio id="audio">
+    <source src="LisaFelden.mp3" type="audio/mpeg">
   </audio>
+
 </body>
 </html>
