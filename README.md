@@ -7,73 +7,104 @@
       margin: 0;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-color: #fff;
       font-family: system-ui, sans-serif;
-      flex-direction: column;
       gap: 20px;
     }
 
-    .play-button {
+    h1 {
+      font-size: 20px;
+      color: #333;
+    }
+
+    .audio-player {
       background-color: #ff3c00;
       color: white;
       border: none;
       border-radius: 8px;
       padding: 16px 24px;
-      font-size: 20px;
-      font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 12px;
-      cursor: pointer;
+      gap: 16px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: background-color 0.2s;
     }
 
-    .play-button:hover {
-      background-color: #e03200;
+    .audio-player button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
     }
 
-    .play-button svg {
-      width: 20px;
-      height: 20px;
+    .audio-player svg {
+      width: 24px;
+      height: 24px;
       fill: white;
     }
 
-    audio {
-      width: 300px;
+    .audio-player input[type="range"] {
+      accent-color: white;
+      height: 4px;
+      flex-grow: 1;
+    }
+
+    .volume {
+      width: 80px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      background: white;
     }
   </style>
 </head>
 <body>
 
-  <button class="play-button" onclick="toggleAudio()">
-    <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    <span id="button-text">So klingt Lisa Felden</span>
-  </button>
+  <h1>So klingt Lisa Felden</h1>
 
-  <audio id="audio" controls>
+  <div class="audio-player">
+    <button onclick="toggleAudio()">
+      <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <input type="range" id="seekbar" value="0" step="1">
+    <input type="range" id="volume" class="volume" min="0" max="1" step="0.01" value="1">
+  </div>
+
+  <audio id="audio">
     <source src="LisaFelden.mp3" type="audio/mpeg">
-    Dein Browser unterstützt das Audio-Element nicht.
   </audio>
 
   <script>
     const audio = document.getElementById('audio');
     const playIcon = document.getElementById('play-icon');
-    const buttonText = document.getElementById('button-text');
+    const seekbar = document.getElementById('seekbar');
+    const volume = document.getElementById('volume');
 
     function toggleAudio() {
       if (audio.paused) {
         audio.play();
-        playIcon.innerHTML = '<path d="M6 4h4v16H6zm8 0h4v16h-4z"/>'; // Pause-Symbol
+        playIcon.innerHTML = '<path d="M6 4h4v16H6zm8 0h4v16h-4z"/>'; // Pause
       } else {
         audio.pause();
-        playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Play-Symbol
+        playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Play
       }
     }
 
-    // Reset Button Icon when audio ends
+    audio.addEventListener('timeupdate', () => {
+      seekbar.max = audio.duration;
+      seekbar.value = audio.currentTime;
+    });
+
+    seekbar.addEventListener('input', () => {
+      audio.currentTime = seekbar.value;
+    });
+
+    volume.addEventListener('input', () => {
+      audio.volume = volume.value;
+    });
+
     audio.addEventListener('ended', () => {
       playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
     });
