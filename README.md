@@ -8,7 +8,6 @@
   <h1>Hier ist dein Ton:</h1>
   <audio controls autoplay>
     <source src="JuliaRammler.mp3" type="audio/mpeg">
-    Dein Browser unterstützt das Audio-Element nicht.
   </audio>
 </body>
 </html>
