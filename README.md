@@ -2,13 +2,6 @@
 <head>
   <meta charset="UTF-8">
   <style>
- @font-face {
-  font-family: 'MinionPro';
-  src: url('MinionPro-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
     body {
       margin: 0;
       height: 100vh;
@@ -16,27 +9,27 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: 'MinionPro', serif;
       background-color: #f5f5f5;
+      font-family: serif;
     }
 
     h1 {
-      margin-bottom: 30px;
-      font-size: 20px;
+      margin-bottom: 40px;
+      font-size: 18px;
       color: #333;
       text-align: center;
     }
 
-    audio::-webkit-media-controls-panel {
-      transform: scale(2.5); /* Vergrößert den Button */
-      transform-origin: center;
-    }
-
     audio {
       width: auto;
-      height: 50px;
+      height: 80px;
       background: none;
       outline: none;
+    }
+
+    audio::-webkit-media-controls-panel {
+      transform: scale(2.5);
+      transform-origin: center;
     }
   </style>
 </head>
