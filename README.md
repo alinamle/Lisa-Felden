@@ -110,9 +110,6 @@
     audio.onended = () => {
       playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; // Reset to play
       setProgress(0);
-    };
-  </script>
-
 </body>
 </html>
     });
